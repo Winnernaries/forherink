@@ -38,7 +38,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* --- สไตล์ของ Custom Popup --- */
         #custom-popup {
             display: none;
             position: fixed;
@@ -94,10 +93,9 @@
     </div>
 
     <div id="intro-screen" class="container">
-        <h1>คุณชื่ออิ๊ง<span style="color:#ff6b6b">Ink</span> ใช่รึเปล่าครับ?</h1>
+        <h1>คุณชื่อ<span style="color:#ff6b6b">อิ๊ง</span> ใช่รึเปล่าครับ?</h1>
         <div class="btn-group">
             <button class="btn btn-yes" onclick="showLetter()">ใช่ค่ะ</button>
-            <button class="btn btn-no" onclick="openPopup()">ไม่ใช่ค่ะ</button>
         </div>
     </div>
 
@@ -114,7 +112,6 @@
     </div>
 
     <script>
-        // ฟังก์ชันควบคุม Popup
         function openPopup() {
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('custom-popup').classList.add('active');
@@ -126,7 +123,21 @@
 
         function showLetter() {
             var music = document.getElementById("bgMusic");
+            
+            // เริ่มต้นที่ความดัง 0 (เงียบ)
+            music.volume = 0;
             music.play().catch(e => console.log("Audio play deferred"));
+
+            // ฟังก์ชันค่อยๆ เพิ่มเสียง (Fade-in)
+            var fadeIn = setInterval(function () {
+                if (music.volume < 0.6) {
+                    // ค่อยๆ เพิ่มทีละ 0.05
+                    music.volume = Math.min(music.volume + 0.05, 0.6);
+                } else {
+                    // เมื่อถึง 0.6 แล้วให้หยุดการทำงานของ Interval
+                    clearInterval(fadeIn);
+                }
+            }, 200); // ทำงานทุกๆ 0.2 วินาที
 
             document.getElementById('intro-screen').style.display = 'none';
             document.getElementById('letter-screen').style.display = 'block';
