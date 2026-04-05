@@ -87,7 +87,7 @@
 
     <div id="overlay"></div>
     <div id="custom-popup">
-        <h3 style="color: #ff6b6b; margin-top: 0;">อุ๊ย! 🌸</h3>
+        <h3 style="color: #ff6b6b; margin-top: 0;">เอ๊ะ! 🌸</h3>
         <p>ไม่ใช่ก็ต้องใช่แล้วแหละครับ</p>
         <button class="btn btn-yes" onclick="closePopup()" style="margin-bottom: 0;">รับทราบค่ะ</button>
     </div>
@@ -107,7 +107,7 @@
             <img src="envelope.gif" id="envelope-img" style="width: 200px; height: auto;">
             <img src="flowers.gif" id="flower-img" class="flower-gif">
             <div id="message" style="display:none; margin-top: 20px; color: #ff6b6b; font-weight: bold;">
-                ตั้งใจทำให้เธอเลย หวังว่าจะชอบนะครับ 🌸
+                ตั้งใจทำให้เธอเลย หหวังว่าจะชอบนะครับ 🌸
             </div>
         </div>
     </div>
@@ -125,20 +125,16 @@
         function showLetter() {
             var music = document.getElementById("bgMusic");
             
-            // เริ่มต้นที่ความดัง 0 (เงียบ)
             music.volume = 0;
             music.play().catch(e => console.log("Audio play deferred"));
 
-            // ฟังก์ชันค่อยๆ เพิ่มเสียง (Fade-in)
             var fadeIn = setInterval(function () {
                 if (music.volume < 0.6) {
-                    // ค่อยๆ เพิ่มทีละ 0.05
                     music.volume = Math.min(music.volume + 0.05, 0.6);
                 } else {
-                    // เมื่อถึง 0.6 แล้วให้หยุดการทำงานของ Interval
                     clearInterval(fadeIn);
                 }
-            }, 200); // ทำงานทุกๆ 0.2 วินาที
+            }, 200);
 
             document.getElementById('intro-screen').style.display = 'none';
             document.getElementById('letter-screen').style.display = 'block';
